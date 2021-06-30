@@ -21,22 +21,27 @@ public class MoodAnalyser {
 
     /**
      * Purpose : To check message and return accordingly
-     *           - Handles Exceptions using try catch block
+     *           - Handling Exceptions by using Customized Exceptions
      *
      * @return sad if message contains sad else false
      */
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalysisException {
+
+        String messageForEmptyString = "Message is Empty,Please enter valid message";
+        String messageForNullString = "Message is Null,Please enter valid message";
 
         try {
 
-            if (message.contains("sad"))
+            if(message.length() == 0)
+                throw new MoodAnalysisException(messageForEmptyString,MoodAnalysisException.TypeOfException.ENTERED_EMPTY);
+            else if (message.contains("sad"))
                 return "SAD";
             else
                 return "HAPPY";
 
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
 
-            return "HAPPY";
+            throw new MoodAnalysisException(messageForNullString,MoodAnalysisException.TypeOfException.ENTERED_NULL);
 
         }
 
