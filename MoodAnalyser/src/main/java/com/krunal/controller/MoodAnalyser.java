@@ -21,15 +21,24 @@ public class MoodAnalyser {
 
     /**
      * Purpose : To check message and return accordingly
+     *           - Handles Exceptions using try catch block
+     *
      * @return sad if message contains sad else false
      */
     public String analyseMood() {
 
-        if(message.contains("sad"))
-            return "SAD";
-        else
+        try {
+
+            if (message.contains("sad"))
+                return "SAD";
+            else
+                return "HAPPY";
+
+        } catch (Exception e) {
+
             return "HAPPY";
 
-    }
+        }
 
+    }
 }
